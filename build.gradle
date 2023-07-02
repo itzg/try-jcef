@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "io.freefair.lombok" version "8.1.0"
     id 'org.springframework.boot' version '3.1.1'
     id 'io.spring.dependency-management' version '1.1.0'
 }
@@ -8,13 +9,7 @@ group = 'me.itzg'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '17'
-}
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
+    sourceCompatibility = JavaVersion.VERSION_17
 }
 
 repositories {
@@ -23,14 +18,14 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    compileOnly 'org.projectlombok:lombok'
+    implementation 'me.friwi:jcefmaven:110.0.25'
+
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }
